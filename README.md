@@ -1,36 +1,197 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Bomba - Multi-currency Accounts for Africans
 
-## Getting Started
+A modern, responsive Next.js application for the Bomba financial platform, designed to help Africans send and receive money globally with competitive exchange rates.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Responsive Design**: Mobile-first approach with beautiful UI across all devices
+- **Hero Slider**: Interactive 6-slide carousel with 5-second auto-rotation
+- **Currency Converter**: Real-time exchange rates with 1% fee calculation
+- **Trusted Partners**: Hover effects on partner logos
+- **Press Page**: Dedicated page showcasing media coverage
+- **Modern UI**: Clean, professional design with smooth animations
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Icons**: Custom SVG icons
+- **Responsive**: Mobile-first design
+
+## 📦 Installation
+
+1. **Clone the repository**
+
+   ```bash
+   git clone <repository-url>
+   cd bomba-app
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3. **Run the development server**
+
+   ```bash
+   npm run dev
+   ```
+
+4. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+## 🏗️ Project Structure
+
+```
+src/
+├── app/
+│   ├── layout.tsx          # Root layout with metadata
+│   ├── page.tsx            # Home page
+│   └── press/
+│       └── page.tsx        # Press page
+├── components/
+│   ├── Header/
+│   │   └── Header.tsx      # Navigation with hamburger menu
+│   ├── HeroSlider/
+│   │   └── HeroSlider.tsx  # Interactive slider component
+│   ├── CurrencyConverter/
+│   │   └── CurrencyConverter.tsx # Currency conversion tool
+│   ├── Features/
+│   │   └── Features.tsx    # Feature showcase
+│   ├── TrustedPartners/
+│   │   └── TrustedPartners.tsx # Partner logos with hover effects
+│   ├── NewsSection/
+│   │   └── NewsSection.tsx # News updates section
+│   ├── Footer/
+│   │   └── Footer.tsx      # Footer with links and social media
+│   └── Icons/
+│       └── Icons.tsx       # Custom SVG icons
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎯 Key Components
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Hero Slider
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 6 slides with different content
+- 5-second auto-rotation
+- Clickable indicators
+- Smooth slide transitions
+- Navigation arrows
 
-## Learn More
+### Currency Converter
 
-To learn more about Next.js, take a look at the following resources:
+- Real-time exchange rates (mock data)
+- 1% fee calculation
+- Support for 25+ currencies
+- Responsive design
+- Live rate updates
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Trusted Partners
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Hover effects on partner logos
+- Category badges
+- Fallback text for missing images
+- Grid layout with responsive design
 
-## Deploy on Vercel
+### Header Navigation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Responsive hamburger menu
+- Dropdown functionality
+- Smooth transitions
+- Mobile-optimized
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🎨 Design Features
+
+- **Color Scheme**: Blue, green, and purple accents
+- **Typography**: Inter font family
+- **Animations**: Smooth transitions and hover effects
+- **Responsive**: Works on all screen sizes
+- **Accessibility**: Proper ARIA labels and semantic HTML
+
+## 📱 Responsive Breakpoints
+
+- **Mobile**: < 768px
+- **Tablet**: 768px - 1024px
+- **Desktop**: > 1024px
+
+## 🚀 Deployment
+
+### Vercel (Recommended)
+
+1. Push your code to GitHub
+2. Connect your repository to Vercel
+3. Deploy automatically
+
+### Other Platforms
+
+```bash
+npm run build
+npm start
+```
+
+## 🔧 Customization
+
+### Adding New Slides
+
+Edit `src/components/HeroSlider/HeroSlider.tsx` and add new slides to the `slides` array.
+
+### Updating Exchange Rates
+
+Replace the mock data in `src/components/CurrencyConverter/CurrencyConverter.tsx` with real API calls.
+
+### Adding Partner Logos
+
+Update the `partners` array in `src/components/TrustedPartners/TrustedPartners.tsx`.
+
+## 📄 Pages
+
+### Home Page (`/`)
+
+- Hero slider with 6 slides
+- News section
+- Mission statement
+- Currency converter
+- Features showcase
+- Trusted partners
+- Call-to-action section
+
+### Press Page (`/press`)
+
+- Media coverage articles
+- Press kit download
+- Contact information
+- Call-to-action
+
+## 🎯 Call-to-Action Integration
+
+The home page includes a prominent call-to-action button that links to the Press page, allowing users to easily access media coverage and press information.
+
+## 🔍 SEO Optimization
+
+- Meta tags for social sharing
+- Open Graph tags
+- Twitter Card support
+- Semantic HTML structure
+- Fast loading times
+
+## 🛡️ Best Practices
+
+- TypeScript for type safety
+- Component-based architecture
+- Responsive design principles
+- Accessibility standards
+- Performance optimization
+
+## 📞 Support
+
+For questions or support, please contact:
+
+- Email: hello@bomba.co
+- Website: [bomba.co](https://bomba.co)
+
+## 📄 License
+
+© 2024 Bomba Limited. All rights reserved.
