@@ -114,6 +114,12 @@
 }
 
 @layer components {
+  @media screen and (max-width: 768px) {
+    .feature-card {
+      margin-top: unset !important;
+    }
+  }
+
   .background-gradient {
     background-image: var(--color-primary-gradient);
   }

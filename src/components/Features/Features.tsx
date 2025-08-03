@@ -31,7 +31,7 @@ const Features = () => {
                 marginTop: feature?.marginReverse ? "-100px" : "0px",
                 backgroundColor: feature?.bgColor,
               }}
-              className={`relative overflow-hidden rounded-2xl px-12 py-24  shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 `}
+              className={`relative mt-0 overflow-hidden rounded-2xl px-12 py-24  shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 feature-card`}
             >
               {feature.comingSoon && (
                 <div className="absolute top-4 left-12">
