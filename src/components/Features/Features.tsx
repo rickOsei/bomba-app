@@ -1,190 +1,76 @@
 "use client";
 
-interface Feature {
-  id: string;
-  title: string;
-  description: string;
-  icon: React.ReactNode;
-  bgColor: string;
-  gradient: string;
-}
+import { features } from "@/assets/data";
+import { ArrowRightIcon, ComingSoonIcon } from "@/assets/icons";
+import Image from "next/image";
 
 const Features = () => {
-  const features: Feature[] = [
-    {
-      id: "swap",
-      title: "Peer to peer marketplace",
-      description:
-        "Create and accept offers at your preferred rates. Our P2P marketplace connects you directly with other users for the best exchange rates.",
-      icon: (
-        <div className="relative w-16 h-16">
-          <div className="absolute inset-0 bg-blue-100 rounded-lg"></div>
-          <div className="absolute inset-2 flex items-center justify-center">
-            <div className="flex space-x-1">
-              <div className="w-3 h-3 bg-blue-600 rounded-full"></div>
-              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-              <div className="w-3 h-3 bg-blue-600 rounded-full"></div>
-            </div>
-          </div>
-          <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full animate-pulse"></div>
-        </div>
-      ),
-      bgColor: "bg-purple-50",
-      gradient: "from-purple-50 to-purple-100",
-    },
-    {
-      id: "express",
-      title: "Take the express lane",
-      description:
-        "Send money instantly using our Express service. Get real-time exchange rates and immediate transfers to your recipients.",
-      icon: (
-        <div className="relative w-16 h-16">
-          <div className="absolute inset-0 bg-green-100 rounded-lg"></div>
-          <div className="absolute inset-2 flex items-center justify-center">
-            <svg
-              className="w-8 h-8 text-green-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
-              />
-            </svg>
-          </div>
-          <div className="absolute -bottom-1 -left-1 w-3 h-3 bg-green-500 rounded-full"></div>
-        </div>
-      ),
-      bgColor: "bg-green-50",
-      gradient: "from-green-50 to-green-100",
-    },
-    {
-      id: "refer",
-      title: "Make money while you refer",
-      description:
-        "Earn rewards for every successful referral. Share Bomba with friends and family and get paid for each new user who joins.",
-      icon: (
-        <div className="relative w-16 h-16">
-          <div className="absolute inset-0 bg-blue-100 rounded-lg"></div>
-          <div className="absolute inset-2 flex items-center justify-center">
-            <div className="grid grid-cols-2 gap-1">
-              <div className="w-3 h-3 bg-blue-600 rounded-sm"></div>
-              <div className="w-3 h-3 bg-blue-600 rounded-sm"></div>
-              <div className="w-3 h-3 bg-blue-600 rounded-sm"></div>
-              <div className="w-3 h-3 bg-blue-600 rounded-sm"></div>
-            </div>
-          </div>
-          <div className="absolute -top-1 -right-1 w-2 h-2 bg-yellow-400 rounded-full"></div>
-          <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-pink-400 rounded-full"></div>
-        </div>
-      ),
-      bgColor: "bg-white",
-      gradient: "from-white to-gray-50",
-    },
-    {
-      id: "connect",
-      title: "Deals from top brands",
-      description:
-        "Access exclusive deals and discounts from leading brands. Save money on shopping, travel, and everyday purchases.",
-      icon: (
-        <div className="relative w-16 h-16">
-          <div className="absolute inset-0 bg-orange-100 rounded-lg"></div>
-          <div className="absolute inset-2 flex items-center justify-center">
-            <svg
-              className="w-8 h-8 text-orange-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01"
-              />
-            </svg>
-          </div>
-          <div className="absolute -top-1 -right-1 w-3 h-3 bg-orange-500 rounded-full"></div>
-        </div>
-      ),
-      bgColor: "bg-orange-50",
-      gradient: "from-orange-50 to-orange-100",
-    },
-  ];
-
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <p className="text-xl text-gray-600 mb-4">
+        <div className="text-center mb-18 max-w-4xl mx-auto">
+          <p className="text-[40px] text-primary font-medium mb-4 leading-tight">
             The Bomba app help our users send & receive money, swap currencies
             across borders and pay bills, safely, conveniently, cheaply and on
             time.
           </p>
-          <p className="text-lg text-gray-500">
+          <p className="text-lg text-foreground font-normal">
             We are customer centric and focused on offering services that enable
             you to have your financial needs.
           </p>
         </div>
 
         {/* Features Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-12">
           {features.map((feature) => (
             <div
               key={feature.id}
-              className={`relative overflow-hidden rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 ${feature.bgColor}`}
+              style={{
+                height: feature?.heightIncrease ? "800px" : "700px",
+                marginTop: feature?.marginReverse ? "-100px" : "0px",
+                backgroundColor: feature?.bgColor,
+              }}
+              className={`relative overflow-hidden rounded-2xl px-12 py-24  shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 `}
             >
-              {/* Background Gradient */}
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-50`}
-              ></div>
-
+              {feature.comingSoon && (
+                <div className="absolute top-4 left-12">
+                  <ComingSoonIcon />
+                </div>
+              )}
               {/* Content */}
               <div className="relative z-10">
-                {/* Icon */}
-                <div className="mb-6">{feature.icon}</div>
-
+                <h3 className="text-2xl font-normal text-foreground mb-2">
+                  {feature.header}
+                </h3>
                 {/* Title */}
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                <h3 className="text-3xl font-bold text-primary mb-4">
                   {feature.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-foreground text-lg font-normal leading-relaxed">
                   {feature.description}
                 </p>
 
                 {/* Learn More Link */}
-                <div className="mt-6">
-                  <a
-                    href={`#${feature.id}`}
-                    className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium transition-colors duration-200"
-                  >
-                    Learn more
-                    <svg
-                      className="ml-2 w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </a>
+                <div className="mt-6 flex items-center gap-2 p-4 pl-0 border-b-2 border-secondary-foreground w-fit cursor-pointer">
+                  <p className="text-secondary-foreground text-lg font-medium">
+                    {feature.button}
+                  </p>
+                  <ArrowRightIcon />
                 </div>
               </div>
 
               {/* Decorative Elements */}
-              <div className="absolute top-4 right-4 w-8 h-8 bg-white/20 rounded-full"></div>
-              <div className="absolute bottom-4 left-4 w-6 h-6 bg-white/10 rounded-full"></div>
+              <div className="w-full h-64" />
+              <div className="absolute bottom-0 right-0 w-[70%] h-[400px]">
+                <Image
+                  src={feature.image}
+                  alt={feature.title}
+                  className="w-full h-full object-contain"
+                />
+              </div>
             </div>
           ))}
         </div>

@@ -165,7 +165,7 @@ const TrustedPartners = () => {
         </div>
 
         {/* Additional Partners Section */}
-        <div className="mt-16 text-center">
+        {/* <div className="mt-16 text-center">
           <div className="inline-flex items-center space-x-8 opacity-60">
             <div className="text-sm text-gray-500">Also trusted by:</div>
             <div className="flex items-center space-x-6">
@@ -177,7 +177,7 @@ const TrustedPartners = () => {
               <span className="text-gray-400 font-medium">Paystack</span>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

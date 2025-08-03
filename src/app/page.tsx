@@ -1,6 +1,5 @@
 import Header from "@/components/Header/Header";
 import HeroSlider from "@/components/HeroSlider/HeroSlider";
-import NewsSection from "@/components/NewsSection/NewsSection";
 import CurrencyConverter from "@/components/CurrencyConverter/CurrencyConverter";
 import Features from "@/components/Features/Features";
 import TrustedPartners from "@/components/TrustedPartners/TrustedPartners";
@@ -14,15 +13,13 @@ export default function HomePage() {
       {/* Hero Section with Slider */}
       <HeroSlider />
 
-      {/* News Section */}
-      <NewsSection />
-
       {/* Mission Statement */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-8 lg:py-12 px-8 bg-white">
+        <div>
+          {/* <div className="pt-8" /> */}
           <div className="text-center">
-            <div className="inline-block border-t-2 border-dashed border-gray-300 pt-8">
-              <h2 className="text-3xl font-bold text-gray-900">
+            <div className="max-w-4xl mx-auto inline-block ">
+              <h2 className="text-3xl font-medium text-left text-primary leading-tight lg:text-4xl lg:text-center">
                 We are on a mission to reduce the cost of sending money to
                 Africa at an average cost of 1%.
               </h2>
@@ -33,6 +30,8 @@ export default function HomePage() {
 
       {/* Currency Converter Section */}
       <CurrencyConverter />
+
+      <div className="bg-primary w-[50%] h-[1px] mx-auto mt-14" />
 
       {/* Features Section */}
       <Features />

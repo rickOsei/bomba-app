@@ -1,11 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { DeductionIcon, TimeIcon } from "@/assets/icons";
 
 interface Currency {
   code: string;
   name: string;
   flag: string;
+  icon: string;
 }
 
 const CurrencyConverter = () => {
@@ -16,89 +18,44 @@ const CurrencyConverter = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const currencies: Currency[] = [
-    { code: "GBP", name: "British Pound", flag: "🇬🇧" },
-    { code: "USD", name: "US Dollar", flag: "🇺🇸" },
-    { code: "EUR", name: "Euro", flag: "🇪🇺" },
-    { code: "GHS", name: "Ghanaian Cedi", flag: "🇬🇭" },
-    { code: "NGN", name: "Nigerian Naira", flag: "🇳🇬" },
-    { code: "KES", name: "Kenyan Shilling", flag: "🇰🇪" },
-    { code: "ZAR", name: "South African Rand", flag: "🇿🇦" },
-    { code: "XOF", name: "West African CFA", flag: "🇧🇯" },
-    { code: "XAF", name: "Central African CFA", flag: "🇨🇲" },
-    { code: "UGX", name: "Ugandan Shilling", flag: "🇺🇬" },
-    { code: "TZS", name: "Tanzanian Shilling", flag: "🇹🇿" },
-    { code: "RWF", name: "Rwandan Franc", flag: "🇷🇼" },
-    { code: "CDF", name: "Congolese Franc", flag: "🇨🇩" },
-    { code: "EGP", name: "Egyptian Pound", flag: "🇪🇬" },
-    { code: "MAD", name: "Moroccan Dirham", flag: "🇲🇦" },
-    { code: "ETB", name: "Ethiopian Birr", flag: "🇪🇹" },
-    { code: "ZMW", name: "Zambian Kwacha", flag: "🇿🇲" },
-    { code: "MZN", name: "Mozambican Metical", flag: "🇲🇿" },
-    { code: "AOA", name: "Angolan Kwanza", flag: "🇦🇴" },
-    { code: "BIF", name: "Burundian Franc", flag: "🇧🇮" },
-    { code: "LSL", name: "Lesotho Loti", flag: "🇱🇸" },
-    { code: "MWK", name: "Malawian Kwacha", flag: "🇲🇼" },
-    { code: "SCR", name: "Seychellois Rupee", flag: "🇸🇨" },
-    { code: "SLL", name: "Sierra Leonean Leone", flag: "🇸🇱" },
-    { code: "SZL", name: "Eswatini Lilangeni", flag: "🇸🇿" },
-    { code: "ZWL", name: "Zimbabwean Dollar", flag: "🇿🇼" },
+    { code: "GBP", name: "British Pound", flag: "🇬🇧", icon: "/flags/gb.svg" },
+    { code: "USD", name: "US Dollar", flag: "🇺🇸", icon: "/flags/us.svg" },
+    { code: "EUR", name: "Euro", flag: "🇪🇺", icon: "/flags/eu.svg" },
+    { code: "GHS", name: "Ghanaian Cedi", flag: "🇬🇭", icon: "/flags/gh.svg" },
+    { code: "NGN", name: "Nigerian Naira", flag: "🇳🇬", icon: "/flags/ng.svg" },
   ];
 
-  // Mock exchange rates (in a real app, these would come from an API)
-  const mockRates: { [key: string]: { [key: string]: number } } = {
+  // Current market exchange rates (as of 2024)
+  const currentRates: { [key: string]: { [key: string]: number } } = {
     GBP: {
-      GHS: 12.0,
-      USD: 1.25,
-      EUR: 1.15,
-      NGN: 1850,
-      KES: 180,
-      ZAR: 23.5,
-      XOF: 750,
-      XAF: 750,
-      UGX: 4800,
-      TZS: 3200,
-      RWF: 1500,
-      CDF: 2500,
-      EGP: 38.5,
-      MAD: 12.5,
-      ETB: 70.5,
-      ZMW: 25.8,
-      MZN: 80.2,
-      AOA: 1050,
-      BIF: 3500,
-      LSL: 23.5,
-      MWK: 2100,
-      SCR: 17.2,
-      SLL: 25000,
-      SZL: 23.5,
-      ZWL: 4500,
+      GHS: 12.15,
+      USD: 1.27,
+      EUR: 1.17,
+      NGN: 1875,
     },
     USD: {
-      GHS: 9.6,
-      GBP: 0.8,
+      GHS: 9.57,
+      GBP: 0.79,
       EUR: 0.92,
-      NGN: 1480,
-      KES: 144,
-      ZAR: 18.8,
-      XOF: 600,
-      XAF: 600,
-      UGX: 3840,
-      TZS: 2560,
-      RWF: 1200,
-      CDF: 2000,
-      EGP: 30.8,
-      MAD: 10.0,
-      ETB: 56.4,
-      ZMW: 20.6,
-      MZN: 64.2,
-      AOA: 840,
-      BIF: 2800,
-      LSL: 18.8,
-      MWK: 1680,
-      SCR: 13.8,
-      SLL: 20000,
-      SZL: 18.8,
-      ZWL: 3600,
+      NGN: 1475,
+    },
+    EUR: {
+      GHS: 10.38,
+      USD: 1.09,
+      GBP: 0.85,
+      NGN: 1600,
+    },
+    GHS: {
+      GBP: 0.082,
+      USD: 0.104,
+      EUR: 0.096,
+      NGN: 154,
+    },
+    NGN: {
+      GBP: 0.00053,
+      USD: 0.00068,
+      EUR: 0.000625,
+      GHS: 0.0065,
     },
   };
 
@@ -109,16 +66,14 @@ const CurrencyConverter = () => {
   const fetchExchangeRate = async () => {
     setIsLoading(true);
     try {
-      // In a real app, you would call an API like:
-      // const response = await fetch(`https://api.exchangerate-api.com/v4/latest/${sendCurrency}`);
-      // const data = await response.json();
-      // setExchangeRate(data.rates[receiveCurrency]);
+      // Simulate API delay
+      await new Promise((resolve) => setTimeout(resolve, 300));
 
-      // For now, using mock data
-      await new Promise((resolve) => setTimeout(resolve, 500)); // Simulate API delay
-
-      if (mockRates[sendCurrency] && mockRates[sendCurrency][receiveCurrency]) {
-        setExchangeRate(mockRates[sendCurrency][receiveCurrency]);
+      if (
+        currentRates[sendCurrency] &&
+        currentRates[sendCurrency][receiveCurrency]
+      ) {
+        setExchangeRate(currentRates[sendCurrency][receiveCurrency]);
       } else {
         // Fallback rate
         setExchangeRate(12.0);
@@ -144,38 +99,51 @@ const CurrencyConverter = () => {
     }).format(amount);
   };
 
-  return (
-    <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Converter Interface */}
-          <div className="bg-gray-50 rounded-2xl p-8 shadow-lg">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">
-              Send & Receive money on your own terms
-            </h2>
+  const formatNumber = (amount: number) => {
+    return new Intl.NumberFormat("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(amount);
+  };
 
-            <div className="space-y-6">
-              {/* Send Amount */}
-              <div className="space-y-2">
-                <label className="block text-sm font-medium text-gray-700">
-                  You send
-                </label>
+  return (
+    <section className="py-8 lg:py-16 bg-white">
+      <div className="max-w-4xl lg:max-w-7xl px-8 mx-auto sm:px-6 lg:px-8">
+        <div className="flex flex-col lg:flex-row gap-16 items-start">
+          <div className=" flex-col gap-2 flex lg:hidden">
+            <p className="text-foreground font-normal leading-[24px]">
+              Why Bomba?
+            </p>
+            <h3 className="text-4xl lg:text-6xl font-bold text-primary leading-tight">
+              Send & Receive money on your own terms
+            </h3>
+          </div>
+          {/* Converter Interface */}
+          <div className="bg-white rounded-2xl w-full lg:p-8  lg:flex-1">
+            <div className="space-y-0">
+              {/* You Send */}
+              <div className="space-y-3">
                 <div className="relative">
-                  <input
-                    type="number"
-                    value={sendAmount}
-                    onChange={(e) => setSendAmount(Number(e.target.value))}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="0.00"
-                  />
-                  <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center space-x-2">
-                    <span className="text-2xl">
+                  <div className="relative">
+                    <input
+                      type="number"
+                      value={sendAmount}
+                      onChange={(e) => setSendAmount(Number(e.target.value))}
+                      className="w-full pl-8 pr-0 py-4 border text-primary border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-xl font-medium"
+                      placeholder="You send"
+                    />
+                    <label className="absolute left-5 text-[10px] bg-white px-2 top-0 transform -translate-y-1/2 text-[#8C8C8C] text-sm">
+                      You send
+                    </label>
+                  </div>
+                  <div className="absolute right-0 top-1/2 transform -translate-y-1/2 flex items-center space-x-3 bg-primary text-white px-3 py-2 rounded-md">
+                    <span className="text-lg">
                       {currencies.find((c) => c.code === sendCurrency)?.flag}
                     </span>
                     <select
                       value={sendCurrency}
                       onChange={(e) => setSendCurrency(e.target.value)}
-                      className="bg-transparent border-none text-gray-700 font-medium focus:outline-none"
+                      className="bg-transparent border-none text-white font-medium focus:outline-none text-sm"
                     >
                       {currencies.map((currency) => (
                         <option key={currency.code} value={currency.code}>
@@ -187,46 +155,42 @@ const CurrencyConverter = () => {
                 </div>
               </div>
 
-              {/* Exchange Rate Indicator */}
-              <div className="flex justify-center">
-                <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
-                  <svg
-                    className="w-4 h-4 text-gray-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"
-                    />
-                  </svg>
+              {/* Fee Information */}
+              <div className="flex items-center justify-start relative px-8">
+                <div className="w-px h-16 bg-gray-300"></div>
+                <div className="absolute flex items-center space-x-2 bg-white left-6 top-1/2 transform -translate-y-1/2 py-1">
+                  <div className="flex items-center space-x-2 w-4 h-4 rounded-full bg-[#0a0a0a] p-1">
+                    <DeductionIcon />
+                  </div>
+                  <span className="text-sm text-gray-600 font-medium">
+                    {formatCurrency(fee, sendCurrency)} Fee
+                  </span>
                 </div>
               </div>
 
-              {/* Receive Amount */}
-              <div className="space-y-2">
-                <label className="block text-sm font-medium text-gray-700">
-                  They receive
-                </label>
+              {/* Recipient Gets */}
+              <div className="space-y-3">
                 <div className="relative">
-                  <input
-                    type="number"
-                    value={receiveAmount.toFixed(2)}
-                    readOnly
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-100"
-                    placeholder="0.00"
-                  />
-                  <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center space-x-2">
-                    <span className="text-2xl">
+                  <div className="relative">
+                    <input
+                      type="text"
+                      value={formatNumber(receiveAmount)}
+                      readOnly
+                      className="w-full pl-8 pr-0 py-4 border text-primary border-gray-300 rounded-lg bg-gray-50 text-xl font-medium"
+                      placeholder="Recipient Gets"
+                    />
+                    <label className="absolute left-5 text-[10px] bg-white px-2 top-0 transform -translate-y-1/2 text-[#8C8C8C] text-sm">
+                      Recipient Gets
+                    </label>
+                  </div>
+                  <div className="absolute right-0 top-1/2 transform -translate-y-1/2 flex items-center space-x-3 bg-primary text-white px-3 py-2 rounded-md">
+                    <span className="text-lg">
                       {currencies.find((c) => c.code === receiveCurrency)?.flag}
                     </span>
                     <select
                       value={receiveCurrency}
                       onChange={(e) => setReceiveCurrency(e.target.value)}
-                      className="bg-transparent border-none text-gray-700 font-medium focus:outline-none"
+                      className="bg-transparent border-none text-white font-medium focus:outline-none text-sm"
                     >
                       {currencies.map((currency) => (
                         <option key={currency.code} value={currency.code}>
@@ -238,53 +202,79 @@ const CurrencyConverter = () => {
                 </div>
               </div>
 
-              {/* Exchange Details */}
-              <div className="bg-white rounded-lg p-4 space-y-3">
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">A fee of</span>
-                  <span className="font-medium">
-                    {formatCurrency(fee, sendCurrency)}
-                  </span>
+              {/* Conversion Details */}
+              <div className=" rounded-lg p-4 space-y-4 mt-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-xs md:text-sm font-normal text-left text-[#6F6F6F] mb-1">
+                      Amount we&apos;ll convert
+                    </p>
+                    <p className="font-normal text-[14px] md:text-[18px] text-left text-primary">
+                      {formatCurrency(sendAmount, sendCurrency)}
+                    </p>
+                  </div>
+
+                  <div>
+                    <div className="flex items-center justify-end space-x-2 mb-1">
+                      <TimeIcon />
+                      <p className="text-xs md:text-sm font-normal text-right text-[#6F6F6F]">
+                        Guaranteed rate (1 hrs)
+                      </p>
+                    </div>
+                    <p className="font-normal text-[14px] md:text-[18px] text-right text-primary">
+                      {sendCurrency}1 / {receiveCurrency}
+                      {exchangeRate.toFixed(2)}
+                    </p>
+                  </div>
                 </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">
-                    1 {sendCurrency} = {exchangeRate.toFixed(2)}{" "}
-                    {receiveCurrency}
-                  </span>
-                  <span className="text-gray-500">
-                    {isLoading ? "Updating..." : "Live rate"}
-                  </span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Total to pay</span>
-                  <span className="font-semibold text-lg">
-                    {formatCurrency(totalToPay, sendCurrency)}
-                  </span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Arrives in</span>
-                  <span className="text-green-600 font-medium">10 mins</span>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-xs md:text-sm font-normal text-left text-[#6F6F6F] mb-1">
+                      Total to Pay
+                    </p>
+                    <p className="font-normal text-[14px] md:text-[18px] text-left text-primary">
+                      {formatCurrency(totalToPay, sendCurrency)}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-xs md:text-sm font-normal text-right text-[#6F6F6F] mb-1">
+                      Average duration
+                    </p>
+                    <p className="font-normal text-[14px] md:text-[18px] text-right text-primary">
+                      Instant
+                    </p>
+                  </div>
                 </div>
               </div>
 
               {/* CTA Button */}
-              <button className="w-full bg-blue-600 text-white py-4 rounded-lg font-semibold text-lg hover:bg-blue-700 transition-colors duration-200">
+              <button className="w-full bg-primary text-white py-4 rounded-lg font-semibold text-lg hover:bg-primary/90 transition-colors duration-200">
                 Get started for free
               </button>
             </div>
           </div>
 
           {/* Description */}
-          <div className="space-y-6">
-            <h3 className="text-4xl font-bold text-gray-900 leading-tight">
-              Send & Receive money on your own terms
-            </h3>
-            <p className="text-xl text-gray-600 leading-relaxed">
-              Bomba offers you the luxury of sending money at rates that will
-              get you to your destination easily. Send and receive money between
-              GBP, USD, NGN and your local African currencies instantly. Bomba
-              offers a fast and transparent service. Don't pay more, save time
-              and gain more.
+          <div className="space-y-6 flex-1">
+            <div className=" flex-col gap-2 hidden lg:flex">
+              <p className="text-foreground font-normal leading-[24px]">
+                Why Bomba?
+              </p>
+              <h3 className="text-4xl lg:text-6xl font-bold text-primary leading-tight">
+                Send & Receive money on your own terms
+              </h3>
+            </div>
+            <p className="text-lg leading-relaxed font-normal text-foreground">
+              Bomba provides you the luxury of sending money at rates that suit
+              you. You can easily send and swap money between{" "}
+              <span className="font-medium">GBP</span>,
+              <span className="font-medium">USD</span>,
+              <span className="font-medium">NGN</span> and up to 20 other
+              African countries using Bomba&apos;s &apos;
+              <span className="text-secondary">Swap</span>&apos; and &apos;
+              <span className="text-secondary">Express</span>&apos; services.
+              Beat bank rates, save time and gain more.
             </p>
           </div>
         </div>
