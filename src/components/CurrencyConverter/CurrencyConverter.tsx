@@ -119,7 +119,7 @@ const CurrencyConverter = () => {
             </h3>
           </div>
           {/* Converter Interface */}
-          <div className="bg-white rounded-2xl w-full lg:p-8  lg:flex-1">
+          <div className="bg-white rounded-2xl w-full lg:p-8 lg:pt-0  lg:flex-1">
             <div className="space-y-0">
               {/* You Send */}
               <div className="space-y-3">
