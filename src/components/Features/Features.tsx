@@ -74,16 +74,6 @@ const Features = () => {
             </div>
           ))}
         </div>
-
-        {/* Mission Statement */}
-        <div className="mt-20 text-center">
-          <div className="inline-block border-t-2 border-dashed border-gray-300 pt-8">
-            <h2 className="text-3xl font-bold text-gray-900">
-              We are on a mission to reduce the cost of sending money to Africa
-              at an average cost of 1%.
-            </h2>
-          </div>
-        </div>
       </div>
     </section>
   );

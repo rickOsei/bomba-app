@@ -5,3 +5,15 @@ export { default as PeerPeerImage } from "./peer-peer.png";
 export { default as ExpressImage } from "./express.png";
 export { default as ReferImage } from "./refer.png";
 export { default as BrandsImage } from "./brands.png";
+
+export { default as AccessBank } from "./access_bank.png";
+export { default as Evolve } from "./evolve.png";
+export { default as IdentityPass } from "./identity_pass.png";
+export { default as Paga } from "./paga.png";
+export { default as RailBank } from "./Rail_Bank.png";
+export { default as Solid } from "./Solid.png";
+export { default as Stitch } from "./Stitch.png";
+export { default as Thunes } from "./Thunes.png";
+export { default as Truelayer } from "./Truelayer.png";
+export { default as Truenarrative } from "./Truenarrative.png";
+export { default as VFD } from "./VFD.png";
