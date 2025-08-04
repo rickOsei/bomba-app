@@ -1,3 +1,9 @@
+export { default as UKFlag } from "./uk.png";
+export { default as USFlag } from "./us.png";
+export { default as GHFlag } from "./ghana.png";
+export { default as NGFlag } from "./nigeria.png";
+export { default as EUFlag } from "./eur.png";
+
 export const ChevronDownIcon = () => (
   <svg
     width="19"

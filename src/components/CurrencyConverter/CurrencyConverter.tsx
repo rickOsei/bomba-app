@@ -1,13 +1,23 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { DeductionIcon, TimeIcon } from "@/assets/icons";
+import {
+  DeductionIcon,
+  EUFlag,
+  USFlag,
+  GHFlag,
+  TimeIcon,
+  UKFlag,
+  NGFlag,
+} from "@/assets/icons";
+import { StaticImageData } from "next/image";
+import Image from "next/image";
 
 interface Currency {
   code: string;
   name: string;
   flag: string;
-  icon: string;
+  icon: StaticImageData;
 }
 
 const CurrencyConverter = () => {
@@ -18,11 +28,11 @@ const CurrencyConverter = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const currencies: Currency[] = [
-    { code: "GBP", name: "British Pound", flag: "🇬🇧", icon: "/flags/gb.svg" },
-    { code: "USD", name: "US Dollar", flag: "🇺🇸", icon: "/flags/us.svg" },
-    { code: "EUR", name: "Euro", flag: "🇪🇺", icon: "/flags/eu.svg" },
-    { code: "GHS", name: "Ghanaian Cedi", flag: "🇬🇭", icon: "/flags/gh.svg" },
-    { code: "NGN", name: "Nigerian Naira", flag: "🇳🇬", icon: "/flags/ng.svg" },
+    { code: "GBP", name: "British Pound", flag: "🇬🇧", icon: UKFlag },
+    { code: "USD", name: "US Dollar", flag: "🇺🇸", icon: USFlag },
+    { code: "EUR", name: "Euro", flag: "🇪🇺", icon: EUFlag },
+    { code: "GHS", name: "Ghanaian Cedi", flag: "🇬🇭", icon: GHFlag },
+    { code: "NGN", name: "Nigerian Naira", flag: "🇳🇬", icon: NGFlag },
   ];
 
   // Current market exchange rates (as of 2024)
@@ -137,20 +147,50 @@ const CurrencyConverter = () => {
                     </label>
                   </div>
                   <div className="absolute right-0 top-1/2 transform -translate-y-1/2 flex items-center space-x-3 bg-primary text-white px-3 py-2 rounded-md">
-                    <span className="text-lg">
-                      {currencies.find((c) => c.code === sendCurrency)?.flag}
-                    </span>
+                    <div className="w-5 h-5">
+                      {(() => {
+                        const currency = currencies.find(
+                          (c) => c.code === sendCurrency
+                        );
+                        return currency ? (
+                          <Image
+                            src={currency.icon}
+                            alt={currency.name}
+                            width={20}
+                            height={20}
+                            className="w-full h-full object-contain"
+                          />
+                        ) : null;
+                      })()}
+                    </div>
                     <select
                       value={sendCurrency}
                       onChange={(e) => setSendCurrency(e.target.value)}
-                      className="bg-transparent border-none text-primary font-medium focus:outline-none text-sm"
+                      className="bg-transparent border-none text-white font-medium focus:outline-none text-sm appearance-none cursor-pointer pr-6"
                     >
                       {currencies.map((currency) => (
-                        <option key={currency.code} value={currency.code}>
+                        <option
+                          key={currency.code}
+                          value={currency.code}
+                          className="bg-white text-primary"
+                        >
                           {currency.code}
                         </option>
                       ))}
                     </select>
+                    <svg
+                      className="w-4 h-4 text-white pointer-events-none absolute right-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
                   </div>
                 </div>
               </div>
@@ -184,20 +224,50 @@ const CurrencyConverter = () => {
                     </label>
                   </div>
                   <div className="absolute right-0 top-1/2 transform -translate-y-1/2 flex items-center space-x-3 bg-primary text-white px-3 py-2 rounded-md">
-                    <span className="text-lg">
-                      {currencies.find((c) => c.code === receiveCurrency)?.flag}
-                    </span>
+                    <div className="w-5 h-5">
+                      {(() => {
+                        const currency = currencies.find(
+                          (c) => c.code === receiveCurrency
+                        );
+                        return currency ? (
+                          <Image
+                            src={currency.icon}
+                            alt={currency.name}
+                            width={20}
+                            height={20}
+                            className="w-full h-full object-contain"
+                          />
+                        ) : null;
+                      })()}
+                    </div>
                     <select
                       value={receiveCurrency}
                       onChange={(e) => setReceiveCurrency(e.target.value)}
-                      className="bg-transparent border-none text-primary font-medium focus:outline-none text-sm"
+                      className="bg-transparent border-none text-white font-medium focus:outline-none text-sm appearance-none cursor-pointer pr-6"
                     >
                       {currencies.map((currency) => (
-                        <option key={currency.code} value={currency.code}>
+                        <option
+                          key={currency.code}
+                          value={currency.code}
+                          className="bg-white text-primary"
+                        >
                           {currency.code}
                         </option>
                       ))}
                     </select>
+                    <svg
+                      className="w-4 h-4 text-white pointer-events-none absolute right-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
                   </div>
                 </div>
               </div>

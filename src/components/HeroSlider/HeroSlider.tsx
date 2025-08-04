@@ -2,13 +2,16 @@
 
 import { useState, useEffect } from "react";
 import { slides, newsItems } from "@/assets/data";
-import { PhoneImage, PhoneImageAlt, PhoneImageMobile } from "@/assets/images";
+import { PhoneImage, PhoneImageAlt } from "@/assets/images";
 import Image from "next/image";
 import { PlayIcon } from "@/assets/icons";
 
 const HeroSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [slideDirection, setSlideDirection] = useState<"left" | "right">(
+    "right"
+  );
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -26,21 +29,16 @@ const HeroSlider = () => {
     }
   };
 
-  // const prevSlide = () => {
-  //   if (!isTransitioning) {
-  //     setIsTransitioning(true);
-  //     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-  //     setTimeout(() => setIsTransitioning(false), 500);
-  //   }
-  // };
-
-  // const goToSlide = (index: number) => {
-  //   if (!isTransitioning && index !== currentSlide) {
-  //     setIsTransitioning(true);
-  //     setCurrentSlide(index);
-  //     setTimeout(() => setIsTransitioning(false), 500);
-  //   }
-  // };
+  const goToSlide = (index: number) => {
+    if (!isTransitioning && index !== currentSlide) {
+      setIsTransitioning(true);
+      // Determine slide direction
+      const direction = index > currentSlide ? "right" : "left";
+      setSlideDirection(direction);
+      setCurrentSlide(index);
+      setTimeout(() => setIsTransitioning(false), 500);
+    }
+  };
 
   return (
     <>
@@ -50,10 +48,26 @@ const HeroSlider = () => {
             <PhoneImage />
           </div>
           <div className="flex flex-col justify-between items-center gap-x-12 sm:pt-6 lg:pt-5 lg:flex-row lg:items-end text-center lg:text-left">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-primary leading-tight">
+            <h1
+              className={`text-4xl md:text-5xl lg:text-6xl font-medium text-primary leading-tight transition-all duration-500 ease-in-out ${
+                isTransitioning
+                  ? slideDirection === "right"
+                    ? "transform translate-x-full opacity-0"
+                    : "transform -translate-x-full opacity-0"
+                  : "transform translate-x-0 opacity-100"
+              }`}
+            >
               {slides[currentSlide].title}
             </h1>
-            <div className="max-w-xl">
+            <div
+              className={`max-w-xl transition-all duration-500 ease-in-out ${
+                isTransitioning
+                  ? slideDirection === "right"
+                    ? "transform translate-x-full opacity-0"
+                    : "transform -translate-x-full opacity-0"
+                  : "transform translate-x-0 opacity-100"
+              }`}
+            >
               <p
                 className="text-lg md:text-lg text-primary leading-relaxed font-normal mb-0"
                 dangerouslySetInnerHTML={{
@@ -72,16 +86,18 @@ const HeroSlider = () => {
           </div>
         </div>
         {/* Spaced Dash Progress Indicator */}
-        <div className="w-full pb-8 ">
+        <div className="w-full pb-8">
           <div className="flex justify-center items-center space-x-5 h-[2px] bg-foreground/30">
             {slides.map((_, index) => (
-              <div
+              <button
                 key={index}
-                className={`h-[2px] rounded-full transition-all duration-500 ease-in-out ${
+                onClick={() => goToSlide(index)}
+                className={`h-[2px] rounded-full transition-all duration-500 ease-in-out cursor-pointer hover:opacity-80 ${
                   index <= currentSlide
                     ? "bg-secondary-foreground w-[16.7%]"
                     : "bg-foreground/20 w-[16.7%]"
                 }`}
+                aria-label={`Go to slide ${index + 1}`}
               />
             ))}
           </div>
@@ -116,7 +132,7 @@ const HeroSlider = () => {
 
             {/* Scroll Indicator */}
             <div className="hidden md:flex items-center text-foreground mt-4 md:mt-0">
-              <span className="text-sm mr-2">Scroll Down</span>
+              <span className="text-[24px] mr-2">Scroll Down</span>
               <svg
                 className="w-4 h-4 animate-bounce text-secondary"
                 fill="currentColor"
