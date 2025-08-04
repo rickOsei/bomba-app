@@ -143,7 +143,7 @@ const CurrencyConverter = () => {
                     <select
                       value={sendCurrency}
                       onChange={(e) => setSendCurrency(e.target.value)}
-                      className="bg-transparent border-none text-white font-medium focus:outline-none text-sm"
+                      className="bg-transparent border-none text-primary font-medium focus:outline-none text-sm"
                     >
                       {currencies.map((currency) => (
                         <option key={currency.code} value={currency.code}>
@@ -190,7 +190,7 @@ const CurrencyConverter = () => {
                     <select
                       value={receiveCurrency}
                       onChange={(e) => setReceiveCurrency(e.target.value)}
-                      className="bg-transparent border-none text-white font-medium focus:outline-none text-sm"
+                      className="bg-transparent border-none text-primary font-medium focus:outline-none text-sm"
                     >
                       {currencies.map((currency) => (
                         <option key={currency.code} value={currency.code}>

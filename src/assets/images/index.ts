@@ -17,3 +17,16 @@ export { default as Thunes } from "./Thunes.png";
 export { default as Truelayer } from "./Truelayer.png";
 export { default as Truenarrative } from "./Truenarrative.png";
 export { default as VFD } from "./VFD.png";
+
+// Press
+export { default as CardIconOne } from "./card-icon-1.png";
+export { default as CardIconTwo } from "./card-icon-2.png";
+export { default as CardIconThree } from "./card-icon-3.png";
+export { default as CardIconFour } from "./card-icon-4.png";
+export { default as CardIconFive } from "./card-icon-5.png";
+export { default as CardIconSix } from "./card-icon-6.png";
+export { default as CardImage } from "./card-image.png";
+export { default as CardImageTwo } from "./card-image-2.png";
+export { default as CardImageThree } from "./card-image-3.png";
+export { default as CardImageFour } from "./card-image-4.png";
+export { default as CardImageFive } from "./card-image-5.png";
