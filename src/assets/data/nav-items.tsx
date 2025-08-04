@@ -6,15 +6,15 @@ export const navigationItems = [
 
 export const dropdownContent = {
   Features: [
-    { name: "Analytics", href: "/features/analytics" },
-    { name: "Reporting", href: "/features/reporting" },
-    { name: "Integrations", href: "/features/integrations" },
-    { name: "API", href: "/features/api" },
+    { name: "Analytics", href: "#" },
+    { name: "Reporting", href: "#" },
+    { name: "Integrations", href: "#" },
+    { name: "API", href: "#" },
   ],
   Company: [
-    { name: "About Us", href: "/about" },
-    { name: "Careers", href: "/careers" },
-    { name: "Contact", href: "/contact" },
-    { name: "Blog", href: "/blog" },
+    { name: "About Us", href: "#" },
+    { name: "Careers", href: "#" },
+    { name: "Contact", href: "#" },
+    { name: "Blog", href: "#" },
   ],
 };

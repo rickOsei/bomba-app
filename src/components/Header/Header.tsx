@@ -65,7 +65,7 @@ const Header = () => {
                 ) : (
                   <Link
                     href={item.href}
-                    className="text-foreground  hover:text-foreground-hover px-3 py-2 md:px-0 text-[17px] font-medium transition-colors duration-200 hover:no-underline"
+                    className="text-foreground hover:text-foreground-hover px-3 py-2 md:px-0 text-[17px] font-medium transition-colors duration-200 hover:no-underline"
                   >
                     {item.name}
                   </Link>
