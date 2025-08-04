@@ -59,7 +59,7 @@ const Footer = () => {
                     href="/press"
                     className="text-foreground hover:text-secondary-foreground text-[24px] leading-[32px] transition-colors duration-200"
                   >
-                    Press Kit
+                    Press
                   </Link>
                 </li>
               </ul>
